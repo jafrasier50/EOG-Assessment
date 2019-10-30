@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 import NowWhat from "./components/NowWhat";
+import { createClient, Provider as BestProvidor } from "urql";
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -27,13 +28,19 @@ const theme = createMuiTheme({
   }
 });
 
+const client = createClient({
+  url: "https://react.eogresources.com/graphql"
+});
+
 const App = props => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <NowWhat />
+        <BestProvidor value={client}>
+          <NowWhat />
+        </BestProvidor>
         <ToastContainer />
       </Wrapper>
     </Provider>
