@@ -7,8 +7,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
-import NowWhat from "./components/NowWhat";
-import { createClient, Provider as BestProvidor } from "urql";
+import GraphStats from "./components/GraphStats";
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -28,19 +27,13 @@ const theme = createMuiTheme({
   }
 });
 
-const client = createClient({
-  url: "https://react.eogresources.com/graphql"
-});
-
 const App = props => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <BestProvidor value={client}>
-          <NowWhat />
-        </BestProvidor>
+        <GraphStats />
         <ToastContainer />
       </Wrapper>
     </Provider>
